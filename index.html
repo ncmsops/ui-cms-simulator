@@ -1,0 +1,482 @@
+<!--
+ * GenesisUI - Bootstrap 4 Admin Template
+ * @version v1.8.14
+ * @link https://genesisui.com
+ * Copyright (c) 2018 creativeLabs Lukasz Holeczek
+ * @license https://genesisui.com/license.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Clever - Bootstrap 4 Admin Template">
+  <meta name="author" content="Lukasz Holeczek">
+  <meta name="keyword"
+    content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard,Vue,Vue.js,React,React.js">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <title>Numocity Simulator</title>
+
+  <!-- Icons -->
+  <link href="vendors/css/flag-icon.min.css" rel="stylesheet">
+  <link href="vendors/css/font-awesome.min.css" rel="stylesheet">
+  <link href="vendors/css/simple-line-icons.min.css" rel="stylesheet">
+
+  <!-- Main styles for this application -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- Styles required by this views -->
+  <link href="vendors/css/daterangepicker.min.css" rel="stylesheet">
+  <link href="vendors/css/gauge.min.css" rel="stylesheet">
+  <link href="vendors/css/toastr.min.css" rel="stylesheet">
+  <style>
+    #messages pre {
+      color: #000;
+    }
+
+    #messages pre.sent {
+      color: #f63;
+    }
+  </style>
+</head>
+
+<!-- BODY options, add following classes to body to change options
+
+// Header options
+1. '.header-fixed'					- Fixed Header
+
+// Brand options
+1. '.brand-minimized'       - Minimized brand (Only symbol)
+
+// Sidebar options
+1. '.sidebar-fixed'					- Fixed Sidebar
+2. '.sidebar-hidden'				- Hidden Sidebar
+3. '.sidebar-off-canvas'		- Off Canvas Sidebar
+4. '.sidebar-minimized'			- Minimized Sidebar (Only icons)
+5. '.sidebar-compact'			  - Compact Sidebar
+
+// Aside options
+1. '.aside-menu-fixed'			- Fixed Aside Menu
+2. '.aside-menu-hidden'			- Hidden Aside Menu
+3. '.aside-menu-off-canvas'	- Off Canvas Aside Menu
+
+// Breadcrumb options
+1. '.breadcrumb-fixed'			- Fixed Breadcrumb
+
+// Footer options
+1. '.footer-fixed'					- Fixed footer
+
+-->
+
+<body
+  class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden sidebar-hidden brand-minimized footer-fixed">
+  <header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <a class="navbar-brand"  href="#"></a>
+    <!-- <button class="navbar-toggler sidebar-toggler d-md-down-none h-100 b-r-1 px-3" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+   
+    <ul class="nav navbar-nav d-md-down-none mr-auto">
+
+    </ul>
+  </header>
+  <div class="app-body">
+    <div class="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="nav">
+          <li class="nav-title text-center">
+            <span>Dashboard</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span
+                class="badge badge-info">NEW</span></a>
+          </li>
+
+        </ul>
+      </nav>
+      <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    </div>
+    <!-- Main content -->
+    <main class="main">
+      <ol class="breadcrumb">
+      </ol>
+      <div class="container-fluid">
+        <div class="animated fadeIn">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    Configuration  
+                  </div>
+                  <div class="card-body">
+                    <form class="form-horizontal" #ChargerForm="ngForm" (ngSubmit)="startScene()" ngNativeValidate>
+                      <!-- <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Charger
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-9">
+                          <select class="form-control" name="charger" id="connection.ChargePointID" (ngModelChange)="modelChanged($event)"
+                            required>
+                            <option value="0">Select Charger</option>
+                            <option *ngFor="let u of chargerData" [value]="u.ChargePointID">
+                              {{u.ChargePointName}}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="col-md-12" *ngIf="chargerIsSelected" style="padding-top: 10px;">
+                          <table class="table table-responsive-sm table-hover table-outline mb-0">
+                            <tr>
+                              <td>Vendor : {{selectedCharger.ChargePointOEM}}</td>
+                              <td>Model : {{selectedCharger.ChargePointModelName}}</td>
+                            </tr>
+                            <tr>
+                              <td>Type : {{selectedCharger.ChargePointTypeName}}</td>
+                              <td>Voltage : {{selectedCharger.ChargePointSpecVoltage}}</td>
+                            </tr>
+                            <tr>
+                              <td>Current : {{selectedCharger.ChargePointSpecCurrent}}</td>
+                              <td>Power : {{selectedCharger.ChargePointSpecPower}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div> -->
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">URL
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" name="url" id="url" placeholder="URL" required>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">CPID
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <input type="text" class="form-control" name="id" id="id" placeholder="Id" required>
+                        </div>
+                        <label class="col-md-3 col-form-label">No of Connectors
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <select class="form-control" name="connectorId" id="connectorId" required>
+                            <option value="0">Select Connector</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <!--label class="col-md-3 col-form-label">Key
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <input type="text" minlength="20" maxlength="20" class="form-control" name="key" id="key" placeholder="Key" required>
+                        </div-->
+                        <label class="col-md-3 col-form-label">Meter Start
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <input type="number" min="0" class="form-control" name="meterStart" id="meterStart"
+                            placeholder="Meter Start" required>
+                        </div>
+                        <label class="col-md-3 col-form-label">Unit
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <select class="form-control" name="unit" id="unit" required>
+                            <option value="Wh">Wh</option>
+                            <option value="kWh">kWh</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Meter value measurend
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-4">
+                          <select class="form-control" name="mesurend" id="mesurend" required>
+                            <option value="Energy.Active.Import.Interval">Interval</option>
+                            <option value="Energy.Active.Import.Register">Register</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" name="currentType" id="currentType" required>
+                            <option value="DC">DC</option>
+                            <option value="AC">AC</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Version
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <select class="form-control" name="version" id="version" required>
+                            <option value="1.6">1.6</option>
+                            <option value="2.0">2.0</option>
+                          </select>
+                        </div>
+                        <label class="col-md-3 col-form-label">Format
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-3">
+                          <select class="form-control" name="format" id="format" required>
+                            <option value="0">Select Format</option>
+                            <option value="json">JSON</option>
+                            <option value="soap">SOAP</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Heartbeat
+                        </label>
+                        <div class="col-md-3">
+                          <input type="text" minlength="1" maxlength="5" class="form-control" name="HeartbeatInterval"
+                            id="HeartbeatInterval" placeholder="Value" required>
+                        </div>
+                        <label class="col-md-3 col-form-label">Metervalue Interval
+                        </label>
+                        <div class="col-md-3">
+                          <input type="text" minlength="1" maxlength="5" class="form-control"
+                            name="MeterValueSampleInterval" id="MeterValueSampleInterval" placeholder="Value" required>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label>Status:</label>
+                          <span id="connectionStatus">CLOSED</span>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-primary pull-right" type="button" style="float:right;"
+                            id="connectButton">Connect</button>
+                          <button class="btn btn-danger pull-right" type="button" style="float:right;"
+                            id="disconnectButton">Close</button>
+                          <button class="btn btn-danger" type="button" style="float:right; margin-right:10px;"
+                            id="cpFaulted">Faulted</button>
+                          <button class="btn btn-danger" type="button" style="float:right; margin-right:10px;"
+                            id="cpPoweroff">PowerOFF</button>
+                          <button class="btn btn-success" type="button"
+                            style="float:right; margin-right:10px;display:none;" id="cpAvailable">Available</button>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">IDTag
+                          <span style="color:red;">*</span>
+                        </label>
+                        <div class="col-md-9">
+                          <input type="text" minlength="20" maxlength="20" class="form-control" name="idTag" id="idTag"
+                            placeholder="Key" required>
+                        </div>
+                      </div>
+
+                      <div class="row" id="conn1Div" style="display:none;">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <div class="col-md-2">
+                              <button class="btn btn-primary" type="button" style="float:right;"
+                                id="pluginButton">Plugin</button>
+                            </div>
+                            <div class="col-md-2">
+                              <button class="btn btn-warning" type="button" style="float:right;"
+                                id="unplugButton">UnPlug</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-success" type="button" style="float:right;"
+                                id="startButton">Authorize & Start</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-danger" type="button" style="float:right;"
+                                id="stopButton">Authorize & Stop</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row" id="conn2Div" style="display:none;">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <div class="col-md-4">
+                              <button class="btn btn-primary" type="button" style="float:right;"
+                                id="pluginButton1">Plugin - 1</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-success" type="button" style="float:right;" id="startButton1">Start
+                                - 1</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-danger" type="button" style="float:right;" id="stopButton1">Stop -
+                                1</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <div class="col-md-4">
+                              <button class="btn btn-primary" type="button" style="float:right;"
+                                id="pluginButton2">Plugin - 2</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-success" type="button" style="float:right;" id="startButton2">Start
+                                - 2</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-danger" type="button" style="float:right;" id="stopButton2">Stop -
+                                2</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Status:</label>
+                            <select class="form-control" id="eStatus">
+                              <option value="Preparing">Preparing</option>
+                              <option value="SuspendedEVSE">SuspendedEVSE</option>
+                              <option value="SuspendedEV">SuspendedEV</option>
+                              <option value="Finishing">Finishing</option>
+                              <option value="Faulted">Faulted</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>ErrorCode:</label>
+                            <select class="form-control" id="eCode">
+                              <option value="ConnectorLockFailure">ConnectorLockFailure</option>
+                              <option value="EVCommunicationError">EVCommunicationError</option>
+                              <option value="GroundFailure">GroundFailure</option>
+                              <option value="HighTemperature">HighTemperature</option>
+                              <option value="InternalError">InternalError</option>
+                              <option value="LocalListConflict">LocalListConflict</option>
+                              <option value="OtherError">OtherError</option>
+                              <option value="OverCurrentFailure">OverCurrentFailure</option>
+                              <option value="OverVoltage">OverVoltage</option>
+                              <option value="PowerMeterFailure">PowerMeterFailure</option>
+                              <option value="PowerSwitchFailure">PowerSwitchFailure</option>
+                              <option value="ReaderFailure">ReaderFailure</option>
+                              <option value="ResetFailure">ResetFailure</option>
+                              <option value="UnderVoltage">UnderVoltage</option>
+                              <option value="WeakSignal">WeakSignal</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <br>
+                          <button class="btn btn-primary" type="button" id="errorTrigger">Send</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Reason:</label>
+                            <select class="form-control" id="eReason">
+                              <option value="Success">Success</option>
+                              <option value="EmergencyStop">EmergencyStop</option>
+                              <option value="EVDisconnected">EVDisconnected</option>
+                              <option value="HardReset">HardReset</option>
+                              <option value="SoftReset">SoftReset</option>
+                              <option value="Local">Local</option>
+                              <option value="Other">Other</option>
+                              <option value="PowerLoss">PowerLoss</option>
+                              <option value="Reboot">Reboot</option>
+                              <option value="Remote">Remote</option>
+                              <option value="UnlockCommand">UnlockCommand</option>
+                              <option value="DeAuthorized">DeAuthorized</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" type="button" id="reasonTrigger">Stop Reason</button>
+                              </div>  
+                        </div>                                               
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    Response <button id="clearMessage">Clear</button>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6" id="connStatus1Div" style="display:none;">
+                        <div class="row">
+                          <div class="col-md-6" id="qrcode1">
+
+                          </div>
+                          <div class="col-md-6">
+                            <p>Status : <span id="status1"></span></p>
+                            <p>MeterValues : <span id="meter1"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6" id="connStatus2Div" style="display:none;">
+                        <div class="row">
+                          <div class="col-md-6" id="qrcode2">
+
+                          </div>
+                          <div class="col-md-6">
+                            <p>Status : <span id="status2"></span></p>
+                            <p>MeterValues : <span id="meter2"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body" id="messages" style="height:450px;overflow-y:auto;">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.conainer-fluid -->
+      <div style="text-align:right"><b >Test Instance URL : </b> &nbsp;&nbsp; ws://cms.numocity.co:9033/ocpp/</div>
+    </main>
+
+  </div>
+  <footer class="app-footer">
+    <span><a href="http://numocity.com">Numocity Simulator</a> � 2018-19.</span>
+    <span class="ml-auto">Powered by <a href="http://numocity.com">Numocity</a></span>
+  </footer>
+
+  <!-- Bootstrap and necessary plugins -->
+  <script src="vendors/js/jquery.min.js"></script>
+  <script src="vendors/js/popper.min.js"></script>
+  <script src="vendors/js/bootstrap.min.js"></script>
+  <script src="vendors/js/pace.min.js"></script>
+
+  <!-- Clever main scripts -->
+  <script type="text/javascript" src="js/qrcode.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/script.js"></script>
+
+
+  <!-- Plugins and scripts required by this views -->
+  <script src="vendors/js/toastr.min.js"></script>
+  <script src="vendors/js/gauge.min.js"></script>
+  <script src="vendors/js/moment.min.js"></script>
+  <script src="vendors/js/daterangepicker.min.js"></script>
+
+  <!-- Custom scripts required by this view
+  <script src="js/views/main.js"></script>
+  -->
+</body>
+
+</html>
