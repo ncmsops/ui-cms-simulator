@@ -358,7 +358,8 @@ new function () {
 		
 		//var connId = $("#connectorId").val();
         StatusNotification[1] = new Date().getTime();
-        StatusNotification[3].connectorId = connId;
+        console.log(connId);
+        StatusNotification[3].connectorId =  $("#connectorIds").val();
         StatusNotification[3].status = status;
         StatusNotification[3].timestamp = new Date();
 		$("#status"+connId).text(status);
