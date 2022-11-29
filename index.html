@@ -225,7 +225,7 @@
                             <option value="2.0">2.0</option>
                           </select>
                         </div>
-                        <label class="col-md-3 col-form-label">Format
+                        <!-- <label class="col-md-3 col-form-label">Format
                           <span style="color:red;">*</span>
                         </label>
                         <div class="col-md-3">
@@ -234,7 +234,7 @@
                             <option value="json">JSON</option>
                             <option value="soap">SOAP</option>
                           </select>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label">Heartbeat
@@ -251,19 +251,20 @@
                         </div>
                       </div>
                       <div class="form-group row">
+                     
                         <div class="col-md-6">
-                          <label>Status:</label>
+                          <label>Transaction Status:</label>
                           <span id="connectionStatus">CLOSED</span>
                         </div>
                         <div class="col-md-6">
                           <button class="btn btn-primary pull-right" type="button" style="float:right;"
-                            id="connectButton">Connect</button>
+                            id="connectButton">Power On</button>
                           <button class="btn btn-danger pull-right" type="button" style="float:right;"
                             id="disconnectButton">Close</button>
-                          <button class="btn btn-danger" type="button" style="float:right; margin-right:10px;"
+                          <!-- <button class="btn btn-danger" type="button" style="float:right; margin-right:10px;"
                             id="cpFaulted">Faulted</button>
                           <button class="btn btn-danger" type="button" style="float:right; margin-right:10px;"
-                            id="cpPoweroff">PowerOFF</button>
+                            id="cpPoweroff">PowerOFF</button> -->
                           <button class="btn btn-success" type="button"
                             style="float:right; margin-right:10px;display:none;" id="cpAvailable">Available</button>
                         </div>
@@ -336,88 +337,112 @@
                         </div>
                       </div>
                       <hr>
+                      <div class="row">
+                        <div class="card">
+                          <div class="card-header">
+                            Connector Status
 
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Status:</label>
-                            <select class="form-control" id="eStatus">
-                              <option value="Preparing">Preparing</option>
-                              <option value="SuspendedEVSE">SuspendedEVSE</option>
-                              <option value="SuspendedEV">SuspendedEV</option>
-                              <option value="Finishing">Finishing</option>
-                              <option value="Faulted">Faulted</option>
-                            </select>
+                          </div>
+                          <div class="card-body">
+                            <div class="row">
+                            
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label>Connector :</label>
+                              <select class="form-control" name="connectorIds" id="connectorIds" required>
+                                <option value="0">Select Connector</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                              </select>
+                            </div>
+                          </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>Status:</label>
+                                  <select class="form-control" id="eStatus">
+                                    <option value="Preparing">Preparing</option>
+                                    <option value="SuspendedEVSE">SuspendedEVSE</option>
+                                    <option value="SuspendedEV">SuspendedEV</option>
+                                    <option value="Finishing">Finishing</option>
+                                    <option value="Faulted">Faulted</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>ErrorCode:</label>
+                                  <select class="form-control" id="eCode">
+                                    <option value="ConnectorLockFailure">ConnectorLockFailure</option>
+                                    <option value="EVCommunicationError">EVCommunicationError</option>
+                                    <option value="GroundFailure">GroundFailure</option>
+                                    <option value="HighTemperature">HighTemperature</option>
+                                    <option value="InternalError">InternalError</option>
+                                    <option value="LocalListConflict">LocalListConflict</option>
+                                    <option value="OtherError">OtherError</option>
+                                    <option value="OverCurrentFailure">OverCurrentFailure</option>
+                                    <option value="OverVoltage">OverVoltage</option>
+                                    <option value="PowerMeterFailure">PowerMeterFailure</option>
+                                    <option value="PowerSwitchFailure">PowerSwitchFailure</option>
+                                    <option value="ReaderFailure">ReaderFailure</option>
+                                    <option value="ResetFailure">ResetFailure</option>
+                                    <option value="UnderVoltage">UnderVoltage</option>
+                                    <option value="WeakSignal">WeakSignal</option>
+                                  </select>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-3">
+                                <br>
+                                <button class="btn btn-primary" type="button" id="errorTrigger">Send</button>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>ErrorCode:</label>
-                            <select class="form-control" id="eCode">
-                              <option value="ConnectorLockFailure">ConnectorLockFailure</option>
-                              <option value="EVCommunicationError">EVCommunicationError</option>
-                              <option value="GroundFailure">GroundFailure</option>
-                              <option value="HighTemperature">HighTemperature</option>
-                              <option value="InternalError">InternalError</option>
-                              <option value="LocalListConflict">LocalListConflict</option>
-                              <option value="OtherError">OtherError</option>
-                              <option value="OverCurrentFailure">OverCurrentFailure</option>
-                              <option value="OverVoltage">OverVoltage</option>
-                              <option value="PowerMeterFailure">PowerMeterFailure</option>
-                              <option value="PowerSwitchFailure">PowerSwitchFailure</option>
-                              <option value="ReaderFailure">ReaderFailure</option>
-                              <option value="ResetFailure">ResetFailure</option>
-                              <option value="UnderVoltage">UnderVoltage</option>
-                              <option value="WeakSignal">WeakSignal</option>
-                            </select>
+                       
+                      </div>
+                      
+                        <div class="card">
+                          <div class="card-header">
+                            Stop Transaction
+
                           </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Connector :</label>
-                          <select class="form-control" name="connectorIds" id="connectorIds" required>
-                            <option value="0">Select Connector</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                          </select>
-                        </div>
-                      </div>
-                        <div class="col-md-3">
-                          <br>
-                          <button class="btn btn-primary" type="button" id="errorTrigger">Send</button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Reason:</label>
-                            <select class="form-control" id="eReason">
-                              <option value="Success">Success</option>
-                              <option value="EmergencyStop">EmergencyStop</option>
-                              <option value="EVDisconnected">EVDisconnected</option>
-                              <option value="HardReset">HardReset</option>
-                              <option value="SoftReset">SoftReset</option>
-                              <option value="Local">Local</option>
-                              <option value="Other">Other</option>
-                              <option value="PowerLoss">PowerLoss</option>
-                              <option value="Reboot">Reboot</option>
-                              <option value="Remote">Remote</option>
-                              <option value="UnlockCommand">UnlockCommand</option>
-                              <option value="DeAuthorized">DeAuthorized</option>
-                            </select>
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Charge point Reason:</label>
+                                  <select class="form-control" id="eReason">
+                                    <option value="Success">Success</option>
+                                    <option value="EmergencyStop">EmergencyStop</option>
+                                    <option value="EVDisconnected">EVDisconnected</option>
+                                    <option value="HardReset">HardReset</option>
+                                    <option value="SoftReset">SoftReset</option>
+                                    <option value="Local">Local</option>
+                                    <option value="Other">Other</option>
+                                    <option value="PowerLoss">PowerLoss</option>
+                                    <option value="Reboot">Reboot</option>
+                                    <option value="Remote">Remote</option>
+                                    <option value="UnlockCommand">UnlockCommand</option>
+                                    <option value="DeAuthorized">DeAuthorized</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="col-md-6">
+                                      <button class="btn btn-primary" type="button" id="reasonTrigger">Stop Session</button>
+                                    </div>  
+                              </div>                                               
+                            </div>                                             
                           </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <button class="btn btn-primary" type="button" id="reasonTrigger">Stop Reason</button>
-                              </div>  
-                        </div>                                               
-                      </div>
+                          </div>
+                        
+                    
                     </form>
                   </div>
+                  </div>
                 </div>
-              </div>
+             
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-header">
@@ -459,7 +484,7 @@
         </div>
       </div>
       <!-- /.conainer-fluid -->
-      <div style="text-align:right"><b >Test Instance URL : </b> &nbsp;&nbsp; ws://cms.numocity.co:9033/ocpp/</div>
+      <!-- <div style="text-align:right"><b >Test Instance URL : </b> &nbsp;&nbsp; ws://cms.numocity.co:9033/ocpp/</div> -->
     </main>
 
   </div>
