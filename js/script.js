@@ -684,7 +684,7 @@ new function () {
                 close();
                 open();
             });
-            localStorage.setItem("url", serverUrl);
+            // localStorage.setItem("url", serverUrl);
             localStorage.setItem("cpID", cpID);
 			
             disconnectButton.click(function (e) {
@@ -784,15 +784,10 @@ new function () {
 }
 
 $(function () {
-    if(localStorage.getItem("url"))
-    {
-        var u = localStorage.getItem("url")
-        $('#url').val(u)
-    }
-    else{
+    
 
         $('#url').val('ws://demo.numocity.in:9033/ocpp/');
-    }
+   
     if(localStorage.getItem("id"))
     {
         var u = localStorage.getItem("id")

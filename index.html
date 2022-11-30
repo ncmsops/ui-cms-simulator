@@ -16,7 +16,7 @@
   <meta name="author" content="Lukasz Holeczek">
   <meta name="keyword"
     content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard,Vue,Vue.js,React,React.js">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="img/favicon.jpg">
   <title>Numocity Simulator</title>
 
   <!-- Icons -->
@@ -78,6 +78,7 @@
     </button>
    
     <a class="navbar-brand"  href="#"></a>
+    <label  style="margin-left: 39%;font-weight: bold;">OCPP Simulator </label>
     <!-- <button class="navbar-toggler sidebar-toggler d-md-down-none h-100 b-r-1 px-3" type="button">
       <span class="navbar-toggler-icon"></span>
     </button> -->
@@ -85,6 +86,7 @@
     <ul class="nav navbar-nav d-md-down-none mr-auto">
 
     </ul>
+    
   </header>
   <div class="app-body">
     <div class="sidebar">
@@ -113,7 +115,7 @@
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-header">
-                    Configuration  
+                    Charge Point Configuration  
                   </div>
                   <div class="card-body">
                     <form class="form-horizontal" #ChargerForm="ngForm" (ngSubmit)="startScene()" ngNativeValidate>
@@ -220,9 +222,9 @@
                           <span style="color:red;">*</span>
                         </label>
                         <div class="col-md-3">
-                          <select class="form-control" name="version" id="version" required>
+                          <select class="form-control" name="version" id="version" disabled required>
                             <option value="1.6">1.6</option>
-                            <option value="2.0">2.0</option>
+                            <!-- <option value="2.0">2.0</option> -->
                           </select>
                         </div>
                         <!-- <label class="col-md-3 col-form-label">Format
@@ -253,7 +255,7 @@
                       <div class="form-group row">
                      
                         <div class="col-md-6">
-                          <label>Transaction Status:</label>
+                          <label>WebSocket Status:</label>
                           <span id="connectionStatus">CLOSED</span>
                         </div>
                         <div class="col-md-6">
@@ -269,13 +271,18 @@
                             style="float:right; margin-right:10px;display:none;" id="cpAvailable">Available</button>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label">IDTag
-                          <span style="color:red;">*</span>
-                        </label>
-                        <div class="col-md-9">
-                          <input type="text" minlength="20" maxlength="20" class="form-control" name="idTag" id="idTag"
-                            placeholder="Key" required>
+                      <div class="card">
+                        <div class="card-body">
+
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label">IDTag
+                              <span style="color:red;">*</span>
+                            </label>
+                            <div class="col-md-9">
+                              <input type="text" minlength="20" maxlength="20" class="form-control" name="idTag" id="idTag"
+                                placeholder="Key" required>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -338,7 +345,7 @@
                       </div>
                       <hr>
                       <div class="row">
-                        <div class="card">
+                        <div class="card" style="margin: 3%;">
                           <div class="card-header">
                             Connector Status
 
@@ -348,9 +355,9 @@
                             
                             <div class="col-md-3">
                               <div class="form-group">
-                                <label>Connector :</label>
+                                <label>Connector Id:</label>
                               <select class="form-control" name="connectorIds" id="connectorIds" required>
-                                <option value="0">Select Connector</option>
+                                <!-- <option value="0">Select Connector</option> -->
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -361,6 +368,10 @@
                                 <div class="form-group">
                                   <label>Status:</label>
                                   <select class="form-control" id="eStatus">
+                                    <option value="Available">Available</option>
+                                    <option value="Charging">Charging</option>
+                                    <option value="Reserved">Reserved</option>
+                                    <option value="Unavailable">Unavailable</option>
                                     <option value="Preparing">Preparing</option>
                                     <option value="SuspendedEVSE">SuspendedEVSE</option>
                                     <option value="SuspendedEV">SuspendedEV</option>
@@ -369,17 +380,17 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                 <div class="form-group">
                                   <label>ErrorCode:</label>
                                   <select class="form-control" id="eCode">
+                                    <option value="OtherError">OtherError</option>
                                     <option value="ConnectorLockFailure">ConnectorLockFailure</option>
                                     <option value="EVCommunicationError">EVCommunicationError</option>
                                     <option value="GroundFailure">GroundFailure</option>
                                     <option value="HighTemperature">HighTemperature</option>
                                     <option value="InternalError">InternalError</option>
                                     <option value="LocalListConflict">LocalListConflict</option>
-                                    <option value="OtherError">OtherError</option>
                                     <option value="OverCurrentFailure">OverCurrentFailure</option>
                                     <option value="OverVoltage">OverVoltage</option>
                                     <option value="PowerMeterFailure">PowerMeterFailure</option>
@@ -392,7 +403,7 @@
                                 </div>
                               </div>
                               
-                              <div class="col-md-3">
+                              <div class="col-md-2">
                                 <br>
                                 <button class="btn btn-primary" type="button" id="errorTrigger">Send</button>
                               </div>
@@ -404,14 +415,14 @@
                       
                         <div class="card">
                           <div class="card-header">
-                            Stop Transaction
+                            Stop Charging Session
 
                           </div>
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-md-12">
+                              <label style="margin-left: 3%;">Stop Charge point Reason:</label>
+                              <div class="col-md-9">
                                 <div class="form-group">
-                                  <label>Charge point Reason:</label>
                                   <select class="form-control" id="eReason">
                                     <option value="Success">Success</option>
                                     <option value="EmergencyStop">EmergencyStop</option>
@@ -428,11 +439,14 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="form-group">
-                                  <div class="col-md-6">
-                                      <button class="btn btn-primary" type="button" id="reasonTrigger">Stop Session</button>
-                                    </div>  
-                              </div>                                               
+                              <div class="col-md-3">
+
+                                <div class="form-group">
+                                   
+                                        <button class="btn btn-primary" type="button" id="reasonTrigger">Stop Session</button>
+                                     
+                                </div>                                               
+                              </div>
                             </div>                                             
                           </div>
                           </div>
@@ -489,7 +503,7 @@
 
   </div>
   <footer class="app-footer">
-    <span><a href="http://numocity.com">Numocity Simulator</a>.</span>
+    <!-- <span><a href="http://numocity.com">Numocity Simulator</a>.</span> -->
     <span class="ml-auto">Powered by <a href="http://numocity.com">Numocity</a></span>
   </footer>
 

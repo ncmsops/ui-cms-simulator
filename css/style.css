@@ -10459,10 +10459,11 @@ base-chart.chart {
 
 @media (min-width: 992px) {
   .brand-minimized .app-header.navbar .navbar-brand {
+   height: 50px;
     width: 50px;
     background-color: #20a8d8;
     background-image: url("../img/logo-symbol.png");
-    background-size: 24px;
+    background-size: 54px;
     border-bottom: 1px solid #1985ac; } }
 
 .progress-xs {
